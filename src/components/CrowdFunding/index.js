@@ -187,7 +187,6 @@ export default class EarnTron extends Component {
         <div>
           <h6 className="text-center">
             Return: <strong>200%</strong><br />
-            <strong>{tarifa}%</strong> per day<br /><br />
           </h6>
 
           <div className="form-group text-center">
