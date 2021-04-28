@@ -194,7 +194,7 @@ export default class EarnTron extends Component {
             <input type="number" className="form-control mb-20 text-center" id="amount" placeholder={min}></input>
             <p className="card-text">You must have ~ 50 TRX to make the transaction</p>
 
-            <a href="#" className="gradient-btn v2" onClick={() => this.deposit()}>Deposit</a>
+            <a href="#amount" className="gradient-btn v2" onClick={() => this.deposit()}>Deposit</a>
 
 
 
