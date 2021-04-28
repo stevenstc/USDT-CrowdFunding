@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.js": "/USDT-CrowdFunding/static/js/main.4a7086ce.chunk.js",
-    "main.js.map": "/USDT-CrowdFunding/static/js/main.4a7086ce.chunk.js.map",
-    "runtime-main.js": "/USDT-CrowdFunding/static/js/runtime-main.8f071282.js",
-    "runtime-main.js.map": "/USDT-CrowdFunding/static/js/runtime-main.8f071282.js.map",
-    "static/js/2.025edb0a.chunk.js": "/USDT-CrowdFunding/static/js/2.025edb0a.chunk.js",
-    "static/js/2.025edb0a.chunk.js.map": "/USDT-CrowdFunding/static/js/2.025edb0a.chunk.js.map",
+    "main.js": "/USDT-CrowdFunding/static/js/main.2775ef3c.chunk.js",
+    "main.js.map": "/USDT-CrowdFunding/static/js/main.2775ef3c.chunk.js.map",
+    "runtime-main.js": "/USDT-CrowdFunding/static/js/runtime-main.250b4843.js",
+    "runtime-main.js.map": "/USDT-CrowdFunding/static/js/runtime-main.250b4843.js.map",
+    "static/js/2.70afb916.chunk.js": "/USDT-CrowdFunding/static/js/2.70afb916.chunk.js",
+    "static/js/2.70afb916.chunk.js.map": "/USDT-CrowdFunding/static/js/2.70afb916.chunk.js.map",
     "index.html": "/USDT-CrowdFunding/index.html",
-    "precache-manifest.352545faa442cbe57c0c226dd2b9296e.js": "/USDT-CrowdFunding/precache-manifest.352545faa442cbe57c0c226dd2b9296e.js",
+    "precache-manifest.53856007dae02663540a7ed54c3782d2.js": "/USDT-CrowdFunding/precache-manifest.53856007dae02663540a7ed54c3782d2.js",
     "service-worker.js": "/USDT-CrowdFunding/service-worker.js",
-    "static/js/2.025edb0a.chunk.js.LICENSE.txt": "/USDT-CrowdFunding/static/js/2.025edb0a.chunk.js.LICENSE.txt",
+    "static/js/2.70afb916.chunk.js.LICENSE.txt": "/USDT-CrowdFunding/static/js/2.70afb916.chunk.js.LICENSE.txt",
     "static/media/TronLinkLogo.png": "/USDT-CrowdFunding/static/media/TronLinkLogo.d3a8f115.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.8f071282.js",
-    "static/js/2.025edb0a.chunk.js",
-    "static/js/main.4a7086ce.chunk.js"
+    "static/js/runtime-main.250b4843.js",
+    "static/js/2.70afb916.chunk.js",
+    "static/js/main.2775ef3c.chunk.js"
   ]
 }
