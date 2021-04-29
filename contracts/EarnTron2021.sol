@@ -44,17 +44,17 @@ contract EarnTron2021 {
     uint withdrawn;
   }
 
-  uint public MIN_DEPOSIT = 10*1000000;
+  uint public MIN_DEPOSIT = 10 trx;
   uint public MIN_RETIRO = 50;
 
-  uint public RETIRO_DIARIO = 100000;
+  uint public RETIRO_DIARIO = 100000 trx;
   uint public ULTIMO_REINICIO;
 
   address payable public marketing;
   address payable public owner;
   address public NoValido = address(0);
 
-  uint[4] public porcientos = [5, 3, 2, 1];
+  uint[2] public porcientos = [5, 5];
 
   uint[10] public tiempo = [ 200 days, 133 days, 100 days, 80 days, 66 days, 57 days, 50 days, 44 days, 40 days, 33 days];
   uint[10] public porcent = [ 200, 200, 200, 200, 200,  200, 200, 200, 200, 200];
@@ -211,8 +211,10 @@ contract EarnTron2021 {
   }
 
 
-  function deposit(address _sponsor) external payable {
-    require ( msg.value >= MIN_DEPOSIT, "Send more TRX");
+  function deposit(uint _value, address _sponsor) external payable {
+
+    require( USDT_Contract.allowance(msg.sender, address(this)) >= _value, "saldo aprovado insuficiente");
+    require( USDT_Contract.transferFrom(msg.sender, address(this), _value), "que saldo de donde?" );
 
 
     if (!investors[msg.sender].registered){
@@ -223,7 +225,7 @@ contract EarnTron2021 {
 
     if ( _sponsor == investors[msg.sender].sponsor ){
 
-      investors[msg.sender].deposits.push(Deposit(setTarifa(msg.value), msg.value, block.number));
+      investors[msg.sender].deposits.push(Deposit(setTarifa(_value), _value, block.number));
 
       if (!investors[msg.sender].recompensa){
 
@@ -232,13 +234,13 @@ contract EarnTron2021 {
 
       }
 
-      investors[msg.sender].invested += msg.value;
-      totalInvested += msg.value;
+      investors[msg.sender].invested += _value;
+      totalInvested += _value;
 
-      owner.transfer(msg.value.mul(3).div(100));
-      marketing.transfer(msg.value.mul(2).div(100));
+      USDT_Contract.transfer(owner, _value.mul(3).div(100));
+      USDT_Contract.transfer(marketing,_value.mul(2).div(100));
 
-      rewardReferers(msg.sender, msg.value);
+      rewardReferers(msg.sender, _value);
 
       reInicio();
 
@@ -318,7 +320,7 @@ contract EarnTron2021 {
     amount = amount+investors[msg.sender].balanceRef;
     reInicio();
 
-    require ( InContract() >= amount, "The contract has no balance");
+    require ( USDT_Contract.balanceOf(address(this)) >= amount, "The contract has no balance");
     require ( amount >= MIN_RETIRO, "The minimum withdrawal limit reached");
     require ( RETIRO_DIARIO >= amount, "Global daily withdrawal limit reached");
 
@@ -326,7 +328,7 @@ contract EarnTron2021 {
 
     uint amount92 = amount.mul(92).div(100);
 
-    require ( msg.sender.send(amount92), "whitdrwls Fail" );
+    require ( USDT_Contract.transfer(msg.sender,amount92), "whitdrawl Fail" );
 
     RETIRO_DIARIO -= amount;
 
