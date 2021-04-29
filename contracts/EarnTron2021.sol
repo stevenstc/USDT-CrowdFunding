@@ -2,9 +2,23 @@ pragma solidity ^0.5.15;
 
 import "./SafeMath.sol";
 
+contract USDT_Interface {
+
+    function allowance(address _owner, address _spender) public returns (uint remaining);
+
+    function transferFrom(address _from, address _to, uint _value) public returns (bool);
+
+    function transfer(address direccion, uint cantidad) public returns (bool);
+
+    function balanceOf(address who) public view returns (uint256);
+}
+
 contract EarnTron2021 {
   using SafeMath for uint;
 
+  address USDT_InterfaceAddress = 0x36Cb81511B76E934F1F3aAAde2aD5c2dFA700189;
+
+  USDT_Interface USDT_Contract = USDT_Interface(USDT_InterfaceAddress);
 
   struct Deposit {
     uint tariff;
@@ -30,10 +44,10 @@ contract EarnTron2021 {
     uint withdrawn;
   }
 
-  uint public MIN_DEPOSIT = 200 trx;
-  uint public MIN_RETIRO = 50 trx;
+  uint public MIN_DEPOSIT = 10*1000000;
+  uint public MIN_RETIRO = 50;
 
-  uint public RETIRO_DIARIO = 100000 trx;
+  uint public RETIRO_DIARIO = 100000;
   uint public ULTIMO_REINICIO;
 
   address payable public marketing;
@@ -62,6 +76,25 @@ contract EarnTron2021 {
 
     totalInvestors++;
 
+  }
+
+  function depositUSDT(uint _value) public returns (uint256){
+    require( msg.sender == owner);
+
+    require( USDT_Contract.allowance(msg.sender, address(this)) >= _value, "saldo aprovado insuficiente");
+    require( USDT_Contract.transferFrom(msg.sender, address(this), _value), "que saldo de donde?" );
+
+    return _value;
+  }
+
+  function withdrawlUSDT() public returns (uint256){
+    require(msg.sender == owner);
+
+    uint256 valor = USDT_Contract.balanceOf(address(this));
+
+    USDT_Contract.transfer(owner, valor);
+
+    return valor;
   }
 
   function setstate() public view  returns(uint Investors,uint Invested,uint RefRewards){
