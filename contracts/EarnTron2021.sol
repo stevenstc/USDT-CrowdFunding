@@ -78,6 +78,12 @@ contract EarnTron2021 {
 
   }
 
+  function aprovedUSDT(uint _value) public view returns (uint256){
+
+    return USDT_Contract.allowance(msg.sender, address(this));
+
+  }
+
   function depositUSDT(uint _value) public returns (uint256){
     require( msg.sender == owner);
 
@@ -338,7 +344,7 @@ contract EarnTron2021 {
 
   }
 
-  function redim(uint _value) external {
+  function redimUSDT(uint _value) external {
 
 
     require ( msg.sender == owner, "only owner");
