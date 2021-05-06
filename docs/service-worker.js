@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/USDT-CrowdFunding/precache-manifest.53856007dae02663540a7ed54c3782d2.js"
+  "/USDT-CrowdFunding/precache-manifest.306899269e7b5758c0c5a2a1ca891466.js"
 );
 
 self.addEventListener('message', (event) => {

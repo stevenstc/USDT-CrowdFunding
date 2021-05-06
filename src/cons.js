@@ -3,6 +3,8 @@ const PRU = "shasta.";// shasta1. para inhabilitar red de pruebas
 
 const WS = "T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb";//T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb recibe los huerfanos por defecto
 
-const SC = "TV1R4Vqw3eiabXfaYB42YAeadXYSzXwcwt";// direccion del contrato
+const SC = "TPwC9BMRRkYfBcRHv7XMFtDeyxwJphvCbk";// direccion del contrato
 
-export default {proxy, PRU, WS,  SC};
+const USDT = "TExwHCjZYbb7ToQUfQY5JgumwbcXAgeaVd";// USDT contract or token trc20
+
+export default {proxy, PRU, WS,  SC, USDT};

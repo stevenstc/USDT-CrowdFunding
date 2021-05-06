@@ -10,8 +10,7 @@ export default class EarnTron extends Component {
 
     this.state = {
 
-      min: 200
-
+      min: 10
 
     };
 
@@ -27,8 +26,18 @@ export default class EarnTron extends Component {
 
   async estado(){
 
+    var accountAddress =  await window.tronWeb.trx.getAccount();
+    accountAddress = window.tronWeb.address.fromHex(accountAddress.address);
 
-    var min = 200;
+    var inicio = accountAddress.substr(0,4);
+    var fin = accountAddress.substr(-4);
+
+    var texto = inicio+"..."+fin;
+
+    document.getElementById("login").innerHTML = '<a href="https://tronscan.io/#/address/'+accountAddress+'" class="logibtn gradient-btn">'+texto+'</a>';
+
+
+    var min = 10;
 
 
     this.setState({
@@ -48,18 +57,24 @@ export default class EarnTron extends Component {
 
     const { min } = this.state;
 
-
     var amount = document.getElementById("amount").value;
     amount = parseFloat(amount);
+    amount = parseInt(amount*1000000);
 
-    const balanceInSun = await window.tronWeb.trx.getBalance(); //number
-    var balanceInTRX = window.tronWeb.fromSun(balanceInSun); //string
-    balanceInTRX = parseFloat(balanceInTRX);//number
+    var accountAddress =  await window.tronWeb.trx.getAccount();
+    accountAddress = window.tronWeb.address.fromHex(accountAddress.address);
 
-    console.log(balanceInTRX);
-    console.log(amount);
+    var tronUSDT = await window.tronWeb;
+    var contractUSDT = await tronUSDT.contract().at(cons.USDT);
 
-    if ( balanceInTRX-50 >= amount ){
+    await contractUSDT.approve(contractAddress, amount).send();
+
+    var aprovado = await contractUSDT.allowance(accountAddress,contractAddress).call();
+    aprovado = parseInt(aprovado.remaining._hex);
+
+    console.log( aprovado);
+
+    if ( aprovado >= amount ){
 
         var loc = document.location.href;
         if(loc.indexOf('?')>0){
@@ -94,10 +109,6 @@ export default class EarnTron extends Component {
 
         var sponsor = document.getElementById("sponsor").value;
 
-        const account =  await window.tronWeb.trx.getAccount();
-        var accountAddress = account.address;
-        accountAddress = window.tronWeb.address.fromHex(accountAddress);
-
         var investors = await Utils.contract.investors(accountAddress).call();
 
         if (investors.registered) {
@@ -111,28 +122,25 @@ export default class EarnTron extends Component {
 
           document.getElementById("amount").value = "";
 
-          await Utils.contract.deposit(sponsor).send({
-            shouldPollResponse: true,
-            callValue: amount * 1000000 // converted to SUN
-          });
+          await Utils.contract.deposit(amount,sponsor).send();
 
         }else{
-          window.alert("Please enter an amount greater than 200 TRX");
-          document.getElementById("amount").value = 200;
+          window.alert("Please enter an amount greater than 10 USDT");
+          document.getElementById("amount").value = 10;
         }
 
 
 
     }else{
 
-      if (amount > 200 && balanceInTRX > 250) {
+      if (amount > 10 && aprovado > 10) {
 
-        if ( amount > balanceInTRX) {
-          if (balanceInTRX-50 <= 0) {
-            document.getElementById("amount").value = 0;
-            window.alert("You do not have enough funds in your account you place at least 250 TRX");
+        if ( amount > aprovado) {
+          if (aprovado <= 0) {
+            document.getElementById("amount").value = 10;
+            window.alert("You do not have enough funds in your account you place at least 10 USDT");
           }else{
-            document.getElementById("amount").value = balanceInTRX-50;
+            document.getElementById("amount").value = 10;
             window.alert("You must leave 50 TRX free in your account to make the transaction");
           }
 
@@ -140,7 +148,7 @@ export default class EarnTron extends Component {
 
         }else{
 
-          document.getElementById("amount").value = amount-50;
+          document.getElementById("amount").value = amount;
           window.alert("You must leave 50 TRX free in your account to make the transaction");
 
         }
@@ -149,6 +157,7 @@ export default class EarnTron extends Component {
       }
     }
 
+
   };
 
 
@@ -156,7 +165,7 @@ export default class EarnTron extends Component {
 
     var { min, tarifa } = this.state;
 
-    min = "Min. "+min+" TRX";
+    min = "Min. "+min+" USDT";
 
     switch (tarifa)
         {

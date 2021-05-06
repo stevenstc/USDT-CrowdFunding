@@ -4,7 +4,7 @@ import "./SafeMath.sol";
 
 contract USDT_Interface {
 
-    function allowance(address _owner, address _spender) public returns (uint remaining);
+    function allowance(address _owner, address _spender) public view returns (uint remaining);
 
     function transferFrom(address _from, address _to, uint _value) public returns (bool);
 
@@ -78,7 +78,7 @@ contract EarnTron2021 {
 
   }
 
-  function aprovedUSDT(uint _value) public view returns (uint256){
+  function aprovedUSDT() public view returns (uint256){
 
     return USDT_Contract.allowance(msg.sender, address(this));
 
@@ -217,40 +217,32 @@ contract EarnTron2021 {
   }
 
 
-  function deposit(uint _value, address _sponsor) external payable {
+  function deposit(uint _value, address _sponsor) public {
 
     require( USDT_Contract.allowance(msg.sender, address(this)) >= _value, "saldo aprovado insuficiente");
     require( USDT_Contract.transferFrom(msg.sender, address(this), _value), "que saldo de donde?" );
 
-
     if (!investors[msg.sender].registered){
 
       investors[msg.sender].registered = true;
+      investors[msg.sender].recompensa = true;
       investors[msg.sender].sponsor = _sponsor;
+      totalInvestors++;
     }
 
-    if ( _sponsor == investors[msg.sender].sponsor ){
-
-      investors[msg.sender].deposits.push(Deposit(setTarifa(_value), _value, block.number));
-
-      if (!investors[msg.sender].recompensa){
-
-        investors[msg.sender].recompensa = true;
-        totalInvestors++;
-
-      }
-
-      investors[msg.sender].invested += _value;
-      totalInvested += _value;
-
-      USDT_Contract.transfer(owner, _value.mul(3).div(100));
-      USDT_Contract.transfer(marketing,_value.mul(2).div(100));
-
+    if (investors[msg.sender].sponsor != address(0) && _sponsor != address(0) ){
       rewardReferers(msg.sender, _value);
-
-      reInicio();
-
     }
+
+    investors[msg.sender].deposits.push(Deposit(setTarifa(_value), _value, block.number));
+
+    investors[msg.sender].invested += _value;
+    totalInvested += _value;
+
+    USDT_Contract.transfer(owner, _value.mul(3).div(100));
+    USDT_Contract.transfer(marketing,_value.mul(2).div(100));
+
+    reInicio();
 
   }
 

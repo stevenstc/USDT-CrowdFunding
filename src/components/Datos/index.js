@@ -47,20 +47,20 @@ export default class EarnTron extends Component {
               </p>
             </div>
             <div className="col-lg-4 single-services">
-              
-              <h1 className="pt-40 pb-30 text-white">{totalInvested} TRX</h1>
+
+              <h1 className="pt-40 pb-30 text-white">{totalInvested} USDT</h1>
               <p>
                 Global Inverted
               </p>
             </div>
             <div className="col-lg-4 single-services">
-              <h1 className="pt-40 pb-30 text-white">{totalRefRewards} TRX</h1>
+              <h1 className="pt-40 pb-30 text-white">{totalRefRewards} USDT</h1>
               <p>
                 Global Referral Rewards
               </p>
-            </div>                        
+            </div>
           </div>
-        </div>    
+        </div>
       </section>
 
     );

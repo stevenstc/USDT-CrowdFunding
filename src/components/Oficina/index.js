@@ -122,14 +122,14 @@ export default class EarnTron extends Component {
 
           <div className="row">
             <div className="col-sm-4 single-services">
-              <h4 className="pt-30 pb-20">{invested} TRX</h4>
+              <h4 className="pt-30 pb-20">{invested} USDT</h4>
               <p>
                 Total invested
               </p>
             </div>
 
             <div className="col-sm-4 single-services">
-              <h4 className="pt-30 pb-20">{totalRef} TRX</h4>
+              <h4 className="pt-30 pb-20">{totalRef} USDT</h4>
               <p>
                 Total earnings from referrals
 
@@ -137,14 +137,14 @@ export default class EarnTron extends Component {
             </div>
 
             <div className="col-sm-4 single-services">
-              <h4 className="pt-30 pb-20">{my} TRX</h4>
+              <h4 className="pt-30 pb-20">{my} USDT</h4>
               <p>
                 My Profits
               </p>
             </div>
 
             <div className="col-sm-4 single-services">
-              <h4 className="pt-30 pb-20">{available} TRX</h4>
+              <h4 className="pt-30 pb-20">{available} USDT</h4>
               <p>
                 Available
               </p>
@@ -152,7 +152,7 @@ export default class EarnTron extends Component {
             </div>
 
             <div className="col-sm-4 single-services">
-              <h4 className="pt-30 pb-20">{withdrawn} TRX</h4>
+              <h4 className="pt-30 pb-20">{withdrawn} USDT</h4>
               <p>
                 withdrawn
 
