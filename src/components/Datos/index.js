@@ -36,33 +36,49 @@ export default class EarnTron extends Component {
   render() {
     const { totalInvestors, totalInvested, totalRefRewards } = this.state;
 
+    var url = 'https://tronscan.io/#/contract/'+contractAddress+'/code';
+
     return (
-      <section id="stats" className="section-gap aboutus-area">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-4 single-services">
-              <h1 className="pt-40 pb-30 text-white">{totalInvestors}</h1>
-              <p>
-                Global Investors
-              </p>
-            </div>
-            <div className="col-lg-4 single-services">
-
-              <h1 className="pt-40 pb-30 text-white">{totalInvested} USDT</h1>
-              <p>
-                Global Inverted
-              </p>
-            </div>
-            <div className="col-lg-4 single-services">
-              <h1 className="pt-40 pb-30 text-white">{totalRefRewards} USDT</h1>
-              <p>
-                Global Referral Rewards
-              </p>
-            </div>
+      <div className="single-about-area wow fadeInUp">
+          <div className="container">
+              <div className="row">
+                  <div className="col-lg-4">
+                      <a href={url} className="single-about">
+                          <div className="single-about-img">
+                              <img src="assets/img/about-icon-1.png" alt="" />
+                          </div>
+                          <div className="single-about-text">
+                              <h1>{totalInvestors}</h1>
+                              <p>Global Investors</p>
+                          </div>
+                      </a>
+                  </div>
+                  <div className="col-lg-4">
+                      <a href={url} className="single-about">
+                          <div className="single-about-img">
+                              <img src="assets/img/about-icon-2.png" alt="" />
+                          </div>
+                          <div className="single-about-text">
+                              <h1>{totalInvested} USDT</h1>
+                              <p>Global Inverted</p>
+                          </div>
+                      </a>
+                  </div>
+                  <div className="col-lg-4">
+                      <a href={url} className="single-about">
+                          <div className="single-about-img">
+                              <img src="assets/img/about-icon-3.png" alt="" />
+                          </div>
+                          <div className="single-about-text">
+                              <h1>{totalRefRewards} USDT</h1>
+                              <p>Global Referral Rewards</p>
+                          </div>
+                      </a>
+                  </div>
+              </div>
           </div>
-        </div>
-      </section>
-
+          <div class="space-90"></div>
+      </div>
     );
   }
 }

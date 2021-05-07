@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0fe5bb3fd83ed31ca1757705865d205e",
+    "revision": "d45728e5e5aa8b0069318541ad0a9274",
     "url": "/USDT-CrowdFunding/index.html"
   },
   {
-    "revision": "b3f840065a268d0bc1fb",
-    "url": "/USDT-CrowdFunding/static/js/2.70afb916.chunk.js"
+    "revision": "77460d210771b907ea82",
+    "url": "/USDT-CrowdFunding/static/js/2.a11b3649.chunk.js"
   },
   {
     "revision": "d5b445a81227876e9f4080bf0648eb92",
-    "url": "/USDT-CrowdFunding/static/js/2.70afb916.chunk.js.LICENSE.txt"
+    "url": "/USDT-CrowdFunding/static/js/2.a11b3649.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "cc945da68d2d777fbbb5",
-    "url": "/USDT-CrowdFunding/static/js/main.f1014315.chunk.js"
+    "revision": "a81ab1218a7c90ae75e5",
+    "url": "/USDT-CrowdFunding/static/js/main.6bfe20c8.chunk.js"
   },
   {
     "revision": "128ec29cd1e13782f6d1",

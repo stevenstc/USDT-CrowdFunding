@@ -5,7 +5,6 @@ import Utils from "../../utils";
 import CrowdFunding from "../CrowdFunding";
 import Datos from "../Datos";
 import Oficina from "../Oficina";
-import TronLinkInfo from "../TronLinkInfo";
 import TronLinkGuide from "../TronLinkGuide";
 
 
@@ -127,26 +126,24 @@ class App extends Component {
         <div className="container">
           <div className="convert-wrap">
             <div className="row justify-content-center align-items-center flex-column pb-30">
-              <h1 className="text-white">Make your investment</h1>           
+              <h1 className="text-white">Make your investment</h1>
             </div>
             <div className="row justify-content-center align-items-start">
 
-              <div className="col-lg-6 cols">
+              <div className="col-lg-12 cols">
                 <CrowdFunding />
               </div>
 
-              <div className="col-lg-6 cols">
-                <TronLinkInfo />
-              </div>              
-              
-            </div>            
+            </div>
           </div>
-        </div>  
+        </div>
       </section>
 
-      <Oficina />   
+      <Oficina />
 
-      <Datos />    
+      <div class="space-90"></div>
+
+      <Datos />
 
       </>
     );
@@ -156,4 +153,3 @@ class App extends Component {
 export default App;
 
 // {tWeb()}
-

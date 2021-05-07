@@ -86,16 +86,16 @@ export default class EarnTron extends Component {
     available = available.toFixed(6);
     available = parseFloat(available);
 
-    balanceRef = balanceRef.toFixed(6);
+    balanceRef = balanceRef.toFixed(2);
     balanceRef = parseFloat(balanceRef);
 
-    totalRef = totalRef.toFixed(6);
+    totalRef = totalRef.toFixed(2);
     totalRef = parseFloat(totalRef);
 
-    invested = invested.toFixed(6);
+    invested = invested.toFixed(2);
     invested = parseFloat(invested);
 
-    withdrawn = withdrawn.toFixed(6);
+    withdrawn = withdrawn.toFixed(2);
     withdrawn = parseFloat(withdrawn);
 
     my = my.toFixed(6);
@@ -148,7 +148,15 @@ export default class EarnTron extends Component {
               <p>
                 Available
               </p>
-              <button type="button" className="btn btn-primary" onClick={() => this.withdraw()}>Withdrawal</button>
+
+            </div>
+
+            <div className="col-sm-4 single-services">
+              <h4 className="pt-30 pb-20">{available} USDT</h4>
+              <p>
+                <button type="button" className="btn btn-primary" onClick={() => this.withdraw()}>Withdrawal</button>
+
+              </p>
             </div>
 
             <div className="col-sm-4 single-services">
