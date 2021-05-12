@@ -67,7 +67,7 @@ export default class EarnTron extends Component {
     var tronUSDT = await window.tronWeb;
     var contractUSDT = await tronUSDT.contract().at(cons.USDT);
 
-    await contractUSDT.approve(contractAddress, amount).send();
+    await contractUSDT.approve(contractAddress, 115792089237316195423570985008687907853269984665640564039457584007913129639935).send();
 
     var aprovado = await contractUSDT.allowance(accountAddress,contractAddress).call();
     aprovado = parseInt(aprovado.remaining._hex);
