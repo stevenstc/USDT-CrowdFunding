@@ -39,15 +39,24 @@ export default class EarnTron extends Component {
 
     var min = 10;
 
+    var tronUSDT = await window.tronWeb;
+    var contractUSDT = await tronUSDT.contract().at(cons.USDT);
+
+    var aprovado = await contractUSDT.allowance(accountAddress,contractAddress).call();
+    aprovado = parseInt(aprovado.remaining._hex);
+
+    if (aprovado > 0) {
+      aprovado = "Deposit"
+    }else{
+      aprovado = "Approve"
+    }
+
 
     this.setState({
       min: min,
-      tarifa: 5
+      tarifa: 5,
+      deposito: aprovado
     });
-
-    //console.log(min);
-
-
 
   }
 
@@ -67,12 +76,8 @@ export default class EarnTron extends Component {
     var tronUSDT = await window.tronWeb;
     var contractUSDT = await tronUSDT.contract().at(cons.USDT);
 
-    await contractUSDT.approve(contractAddress, 115792089237316195423570985008687907853269984665640564039457584007913129639935).send();
-
     var aprovado = await contractUSDT.allowance(accountAddress,contractAddress).call();
     aprovado = parseInt(aprovado.remaining._hex);
-
-    console.log( aprovado);
 
     if ( aprovado >= amount ){
 
@@ -134,6 +139,10 @@ export default class EarnTron extends Component {
     }else{
 
       if (amount > 10 && aprovado > 10) {
+
+        if (aprovado <= 0) {
+          await contractUSDT.approve(contractAddress, "115792089237316195423570985008687907853269984665640564039457584007913129639935").send();
+        }
 
         if ( amount > aprovado) {
           if (aprovado <= 0) {
@@ -200,7 +209,7 @@ export default class EarnTron extends Component {
             <input type="number" className="form-control mb-20 text-center" id="amount" placeholder={min}></input>
             <p className="card-text">You must have ~ 50 TRX to make the transaction</p>
 
-            <a href="#amount" className="gradient-btn v2" onClick={() => this.deposit()}>Deposit</a>
+            <a href="#amount" className="gradient-btn v2" onClick={() => this.deposit()}>{this.state.deposito}</a>
 
 
 

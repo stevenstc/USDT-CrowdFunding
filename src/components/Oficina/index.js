@@ -107,13 +107,13 @@ export default class EarnTron extends Component {
         <div className="container text-center">
           <header className="section-header">
             <h3 className="white"><span style={{'fontweight': 'bold'}}>
-              My office:</span>
+              Mi Oficina:</span>
             </h3>
             <p>{direccion}</p><br />
-            <h3 className="white" >Referral link:</h3>
+            <h3 className="white" >Link de referido:</h3>
             <h6 className="aboutus-area" style={{'padding': '1.5em', 'fontSize': '11px'}}><a href={link}>{link}</a><br /><br />
             <CopyToClipboard text={link}>
-              <button type="button" style={{'cursor': 'pointer'}} className="btn btn-primary">Copy to clipboard</button>
+              <button type="button" style={{'cursor': 'pointer'}} className="btn btn-primary">Copiar al portapapeles</button>
             </CopyToClipboard>
             </h6>
             <hr></hr>
@@ -124,14 +124,14 @@ export default class EarnTron extends Component {
             <div className="col-sm-4 single-services">
               <h4 className="pt-30 pb-20">{invested} USDT</h4>
               <p>
-                Total invested
+                Total invertido
               </p>
             </div>
 
             <div className="col-sm-4 single-services">
               <h4 className="pt-30 pb-20">{totalRef} USDT</h4>
               <p>
-                Total earnings from referrals
+                Ganado por referidos
 
               </p>
             </div>
@@ -139,14 +139,14 @@ export default class EarnTron extends Component {
             <div className="col-sm-4 single-services">
               <h4 className="pt-30 pb-20">{my} USDT</h4>
               <p>
-                My Profits
+                Ganancias
               </p>
             </div>
 
             <div className="col-sm-4 single-services">
               <h4 className="pt-30 pb-20">{available} USDT</h4>
               <p>
-                Available
+                Disponible
               </p>
 
             </div>
@@ -154,7 +154,7 @@ export default class EarnTron extends Component {
             <div className="col-sm-4 single-services">
               <h4 className="pt-30 pb-20">{available} USDT</h4>
               <p>
-                <button type="button" className="btn btn-primary" onClick={() => this.withdraw()}>Withdrawal</button>
+                <button type="button" className="btn btn-primary" onClick={() => this.withdraw()}>Retirar</button>
 
               </p>
             </div>
@@ -162,7 +162,7 @@ export default class EarnTron extends Component {
             <div className="col-sm-4 single-services">
               <h4 className="pt-30 pb-20">{withdrawn} USDT</h4>
               <p>
-                withdrawn
+                Retirado
 
               </p>
             </div>

@@ -37,8 +37,8 @@ const TronLinkGuide = props => {
     }
 
     return (
-    <>
-        <div className='tronLink row' onClick={ openTronLink } style={{'padding': '3em'}}>
+    <>  <a href='/'>
+        <div className='tronLink row' style={{'padding': '3em','decoration':'none','color':'black'}}>
 
             <div className='info col-sm-8'>
                 <h1>Log in Required</h1>
@@ -48,7 +48,9 @@ const TronLinkGuide = props => {
                 </p>
             </div>
             { logo }
-        </div> 
+        </div>
+
+        </a>
 
     </>
     );
