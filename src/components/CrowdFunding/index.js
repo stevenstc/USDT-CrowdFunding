@@ -35,7 +35,7 @@ export default class EarnTron extends Component {
     var texto = inicio+"..."+fin;
 
     document.getElementById("login").innerHTML = '<a href="https://tronscan.io/#/address/'+accountAddress+'" class="logibtn gradient-btn">'+texto+'</a>';
-
+document.getElementById("contrato").innerHTML = '<a class="scroll" target="_black" rel="noopener noreferrer" href="https://tronscan.io/#/contract/'+contractAddress+'/code">Contrato</a>';
 
     var min = 10;
 
@@ -46,15 +46,14 @@ export default class EarnTron extends Component {
     aprovado = parseInt(aprovado.remaining._hex);
 
     if (aprovado > 0) {
-      aprovado = "Deposit"
+      aprovado = "Depositar"
     }else{
-      aprovado = "Approve"
+      aprovado = "Aprobar"
     }
 
 
     this.setState({
       min: min,
-      tarifa: 5,
       deposito: aprovado
     });
 
@@ -172,29 +171,9 @@ export default class EarnTron extends Component {
 
   render() {
 
-    var { min, tarifa } = this.state;
+    var { min } = this.state;
 
     min = "Min. "+min+" USDT";
-
-    switch (tarifa)
-        {
-            case 0:  tarifa = 2;
-                     break;
-            case 1:  tarifa = 3;
-                     break;
-            case 2:  tarifa = 4;
-                     break;
-            case 3:  tarifa = 5;
-                     break;
-            case 4:  tarifa = 6;
-                     break;
-
-            default: tarifa = "N/A";
-                     break;
-        }
-
-
-
 
 
     return (

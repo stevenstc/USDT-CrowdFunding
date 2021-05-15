@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/USDT-CrowdFunding/static/js/main.6bfe20c8.chunk.js",
-    "main.js.map": "/USDT-CrowdFunding/static/js/main.6bfe20c8.chunk.js.map",
+    "main.js": "/USDT-CrowdFunding/static/js/main.9fbd773b.chunk.js",
+    "main.js.map": "/USDT-CrowdFunding/static/js/main.9fbd773b.chunk.js.map",
     "runtime-main.js": "/USDT-CrowdFunding/static/js/runtime-main.250b4843.js",
     "runtime-main.js.map": "/USDT-CrowdFunding/static/js/runtime-main.250b4843.js.map",
     "static/js/2.a11b3649.chunk.js": "/USDT-CrowdFunding/static/js/2.a11b3649.chunk.js",
     "static/js/2.a11b3649.chunk.js.map": "/USDT-CrowdFunding/static/js/2.a11b3649.chunk.js.map",
     "index.html": "/USDT-CrowdFunding/index.html",
-    "precache-manifest.48839a868b3bad88fb5e7a62e21512aa.js": "/USDT-CrowdFunding/precache-manifest.48839a868b3bad88fb5e7a62e21512aa.js",
+    "precache-manifest.f6a05945221702637baf5e13dd3c4f5d.js": "/USDT-CrowdFunding/precache-manifest.f6a05945221702637baf5e13dd3c4f5d.js",
     "service-worker.js": "/USDT-CrowdFunding/service-worker.js",
     "static/js/2.a11b3649.chunk.js.LICENSE.txt": "/USDT-CrowdFunding/static/js/2.a11b3649.chunk.js.LICENSE.txt",
     "static/media/TronLinkLogo.png": "/USDT-CrowdFunding/static/media/TronLinkLogo.d3a8f115.png"
@@ -15,6 +15,6 @@
   "entrypoints": [
     "static/js/runtime-main.250b4843.js",
     "static/js/2.a11b3649.chunk.js",
-    "static/js/main.6bfe20c8.chunk.js"
+    "static/js/main.9fbd773b.chunk.js"
   ]
 }

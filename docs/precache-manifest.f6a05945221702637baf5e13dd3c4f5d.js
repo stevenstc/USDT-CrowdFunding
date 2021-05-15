@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d45728e5e5aa8b0069318541ad0a9274",
+    "revision": "2e039ce930b6e95ff5660f7015d0d85f",
     "url": "/USDT-CrowdFunding/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/USDT-CrowdFunding/static/js/2.a11b3649.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "a81ab1218a7c90ae75e5",
-    "url": "/USDT-CrowdFunding/static/js/main.6bfe20c8.chunk.js"
+    "revision": "dc79432b95280600bd60",
+    "url": "/USDT-CrowdFunding/static/js/main.9fbd773b.chunk.js"
   },
   {
     "revision": "128ec29cd1e13782f6d1",
