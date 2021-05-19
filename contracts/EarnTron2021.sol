@@ -45,7 +45,7 @@ contract EarnTron2021 {
   }
 
   uint public MIN_DEPOSIT = 10 trx;
-  uint public MIN_RETIRO = 50;
+  uint public MIN_RETIRO = 10 trx;
 
   uint public RETIRO_DIARIO = 100000 trx;
   uint public ULTIMO_REINICIO;
@@ -54,7 +54,7 @@ contract EarnTron2021 {
   address payable public owner;
   address public NoValido = address(0);
 
-  uint[2] public porcientos = [5, 5];
+  uint[2] public porcientos = [2, 3];
 
   uint[10] public tiempo = [ 200 days, 133 days, 100 days, 80 days, 66 days, 57 days, 50 days, 44 days, 40 days, 33 days];
   uint[10] public porcent = [ 200, 200, 200, 200, 200,  200, 200, 200, 200, 200];
@@ -246,7 +246,7 @@ contract EarnTron2021 {
       rewardReferers(msg.sender, _value);
     }
 
-    usuario.deposits.push(Deposit(setTarifa(_value), _value, block.number));
+    usuario.deposits.push(Deposit(setTarifa(_value.mul(90).div(100)), _value.mul(90).div(100), block.number));
 
     usuario.invested += _value;
     totalInvested += _value;
@@ -333,15 +333,13 @@ contract EarnTron2021 {
     require ( amount >= MIN_RETIRO, "The minimum withdrawal limit reached");
     require ( RETIRO_DIARIO >= amount, "Global daily withdrawal limit reached");
 
+    require ( true != USDT_Contract.transfer(msg.sender,amount), "whitdrawl Fail" );
+
     profit();
-
-    uint amount92 = amount.mul(92).div(100);
-
-    require ( true != USDT_Contract.transfer(msg.sender,amount92), "whitdrawl Fail" );
 
     RETIRO_DIARIO -= amount;
 
-    investors[msg.sender].withdrawn += amount92;
+    investors[msg.sender].withdrawn += amount90;
 
 
 
