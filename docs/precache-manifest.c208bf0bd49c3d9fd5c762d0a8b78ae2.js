@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2e039ce930b6e95ff5660f7015d0d85f",
+    "revision": "5383fc3e13c09a99985345b64dc46c40",
     "url": "/USDT-CrowdFunding/index.html"
   },
   {
